@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>tabToggle - jQuery plugin</title>
+	</head> 
+	<style>
+		body{
+			font:12px/18px 'Helvetica', Arial, Helvetica, sans-serif;
+			margin:25px;
+			width:800px;
+		}
+		
+		body *{
+			margin:0;
+			padding:0;
+		}
+		
+		h1{
+			padding:0 0 20px;
+		}
+		
+		h2{
+			padding:15px 0;
+			color:#666;
+			clear:both;
+		}
+		
+		h3{
+			padding:0 0 5px;
+		}
+		
+		code,
+		pre{
+			background:#F0FCF6;
+			border:1px solid #B4BDB8;
+		}
+		
+		code{
+			padding:2px;
+		}
+		
+		pre{
+			padding:10px;
+			margin:15px 0;
+			display:table;
+		}
+		
+		a{
+			color:#0066cc;
+		}
+		
+		a:hover{
+			color:#3F7200;
+			text-decoration:none;
+		}
+		
+		.codeComment{
+			font-style:italic;
+			color:#999;
+		}
+		
+		.column{
+			float:left;
+			padding:0 25px 0 0;
+			width:45%;
+		}
+		
+		.tabNavigation {
+			list-style:none;
+		}
+		
+		.tabNavigation li{
+			display:inline;
+		}
+		
+		.tabNavigation a{
+			display:block;
+			float:left;
+			margin:0 5px 0 0;
+			padding:3px 5px;
+			color:#333;
+			border:1px solid #ccc;
+			text-decoration:none;
+		}
+		
+		.tabNavigation a.selected{
+			color:#fff;
+			background:#0066cc;
+			border:1px solid #0066cc;
+		}
+		
+		.tabContent{
+			clear:both;
+			padding:10px 0 0;
+		}
+		
+		
+	</style>
+	<body>
+		<h1>jquery.tabToggle.js plugin</h1>
+		
+		<p>Get it from: <a href="http://github.com/oslego/tabToggle/tree/master" title"Git Repository for the tabToggle jQuery plugin">http://github.com/oslego/tabToggle/tree/master</a></p>
+		
+		<h2>Demo</h2>
+		
+		<div class="column">
+			<ul id="tabs1" class="tabNavigation">
+				<li>
+					<a href="#">Tab 1.1</a>
+				</li>
+				<li>
+					<a href="#">Tab 1.2</a>
+				</li>
+				<li>
+					<a href="#">Tab 1.3</a>
+				</li>
+			</ul>
+		
+			<div id="tabsContent1" class="tabContent">
+				<div>
+					<h3>Simple setup</h3>
+					<p>
+						The <code>tabToggle</code> jQuery plugin makes tab navigation easy by pairing triggers to targets, that is, tabs to tab contents. By default triggers toggle the visibility of the targets.
+					</p>
+				</div>	
+				<div>
+					<h3>No more conventions</h3>
+					<p>
+						Any HTML element can be a trigger for any target, also an HTML element. There's no conventions to follow, no naming tricks, and no dependencies.
+					</p>	
+					
+				</div>	
+				<div>
+					<h3>targets.length == triggers.length</h3>
+					<p>
+						The only catch is that the number of triggers (tabs) must be equal to the number of targets (tab content element) - makes sense, don't you think? 
+					</p>
+				</div>	
+			</div>
+		</div>
+		
+		<div class="column">
+			<ul id="tabs2" class="tabNavigation">
+				<li>
+					<a href="#">Tab 2.1</a>
+				</li>
+				<li>
+					<a href="#">Tab 2.2</a>
+				</li>
+				<li>
+					<a href="#">Tab 2.3</a>
+				</li>
+			</ul>
+			
+			<ul id="tabsContent2" class="tabContent">
+				<li>
+					<h3>Multiple tab navigators</h3>
+					<p>
+						Multiple instances of tab groups work just fine on the same page.
+					</p>
+				</li>
+					
+				<li>
+					<h3>Default tab</h3>
+					<p>
+						This tab navigator was setup with <code>{defaultSelectedIndex:1}</code>. <br/> 
+						In zero-indexed terms that means the default tab is the second one. Check out the <code>settings</code> object you can custom setup.
+					</p>
+					
+				</li>
+				
+				<li>
+					<h3>This is a &lt;li&gt; element</h3>
+					<p>The targets for the 2nd tab group are &lt;li&gt; elements. There's really no constraint on what the trigger and target elements are as long as they're numbers are equal</p>
+				</li>	
+			</ul>		
+		</div>
+		
+		<h2>Code Sample</h2>
+		<h3>Basic Setup</h3>
+		<p>
+			The tabToggle plugin is really simple to setup. Attach it to a set of elements that will be the triggers and specify an argument with the targets. <br />
+			The number of triggers must be the same as the number of targets - this is the only limitation. <br />
+		</p>
+		
+		<pre>$('#tabs a').<strong>tabToggle</strong>($('#tabsContent div'));</pre>
+		
+		<h3>Custom Settings</h3>
+		
+		<p>
+			You can also add a settings object as the second parameter to the plugin setup.
+		</p>
+		
+		<pre>
+var settings = {
+  <span class="codeComment">//CSS class to be applied to the selected trigger (tab)</span>
+  selectedClass: "selected",	
+  <span class="codeComment">//default trigger/tab pair index (Array-like, zero-indexed) to be active after the plugin loads</span> 
+  defaultSelectedIndex: 1
+}
+$('#tabs a').tabToggle($('#tabsContent div'), <strong>settings</strong>);</pre>
+						
+		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" src="jquery.tabToggle.js"></script>
+		<script type="text/javascript">
+				
+			$('document').ready(function(){
+				$('#tabs1 a').tabToggle($('#tabsContent1>div'));
+				
+				$('#tabs2 a').tabToggle($('#tabsContent2 li'), {defaultSelectedIndex:1});
+				
+			})
+			
+		</script>
+	</body>
+</html>

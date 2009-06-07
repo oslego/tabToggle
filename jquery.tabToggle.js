@@ -1,7 +1,36 @@
-/**
- * @author rcaliman
+/*!
+ * jQuery tabToggle plugin
+
+ * Date 6/8/2009
+ * razvan.caliman(at)gmail(dot)com | http://github.com/oslego/tabToggle/tree/master
+ * @author Razvan Caliman
+ * @version 1.0
  */
+
 (function($){
+	/**
+	 * jQuery tabToggle plugin
+	 * 
+	 * The plugin receives a set of elements via the "this" parameter 
+	 * that act as triggers to toggle the visibility of a set of targets.
+	 *  
+	 * The number of triggers must be equal to the number of targets. 
+	 * Matching triggers to targets is done by their index.
+	 * 
+	 * @param {jQuery / Array} targets 
+	 * 						   a set of elements that will be shown/hidden 
+	 * 						   when clicking on the corresponding trigger
+	 * 
+	 * @param {Object} settings 
+	 * 		object with custom defined settings for this plugin:
+	 * 
+	 * 		@param {String} selectedClass 
+	 * 						CSS class to be applied to the selected trigger (tab)
+	 * 
+	 * 		@param {Number} defaultSelectedIndex
+	 * 						default trigger/tab pair index (Array-like, zero-indexed) 
+	 * 						to become active after the plugin loads 
+	 */
 	$.fn.tabToggle = function(targets, settings){
 		
 		//closure allows for multiple instances of the plugin on the same page
@@ -87,7 +116,7 @@
 		//CSS class to be applied to the selected trigger (tab)
 		selectedClass: "selected",
 		
-		//default trigger/tab pair index (Array-like, zero-indexed) to be active after the plugin loads 
+		//default trigger/tab pair index (Array-like, zero-indexed) to become active after the plugin loads 
 		defaultSelectedIndex: 0
 	};
 })(jQuery);
